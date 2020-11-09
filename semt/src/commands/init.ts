@@ -1,6 +1,9 @@
 import { Command, flags } from '@oclif/command'
 import { access, writeFile } from 'fs'
+// HL https://www.npmjs.com/package/chalk
 import chalk from 'chalk'
+// HL https://www.npmjs.com/package/inquirer#examples
+// HL https://www.npmjs.com/package/@types/inquirer
 import inquirer from 'inquirer'
 
 export default class Init extends Command {
@@ -15,11 +18,11 @@ export default class Init extends Command {
     const config = {
       tags: [
         { tag: 'TODO', description: 'needs to be implemented' },
-        { tag: 'HTTP', description: 'http link' },
-        { tag: 'HACK', description: 'tricky trick' },
-        { tag: 'OBSOLETE', description: 'legacy code' },
-        { tag: 'REF', description: 'refactoring required' },
-        { tag: 'TEST', description: 'needs to be covered with tests' }
+        { tag: 'HL', description: 'http link' },
+        { tag: 'HA', description: 'hack or tricky trick' },
+        { tag: 'O', description: 'legacy code' },
+        { tag: 'R', description: 'refactoring required' },
+        { tag: 'T', description: 'needs to be covered with tests' }
       ]
     }
     access(`${process.cwd()}/semt.json`, error => {
