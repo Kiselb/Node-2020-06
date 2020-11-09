@@ -1,9 +1,10 @@
 Commands:
-	Init
-	List filter file
-	Add entity
-	Rm entity
-	Calc date duration
+	init
+	list <filter> <file>
+	entity add <name>
+	entity remove <name>
+	calc date duration
+	tree <file>
 
 Entity:
 	TODO[[<Date>],[<Duration>]]

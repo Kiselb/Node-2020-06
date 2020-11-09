@@ -24,6 +24,7 @@ hello world from ./src/hello.ts!
 
     const name = flags.name ?? 'world'
     this.log(`hello ${name} from .\\src\\commands\\hello.ts`)
+    console.log(__dirname)
     if (args.file && flags.force) {
       this.log(`you input --force and --file: ${args.file}`)
     }

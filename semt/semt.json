@@ -1,0 +1,28 @@
+{
+  "tags": [
+    {
+      "tag": "TODO",
+      "description": "needs to be implemented"
+    },
+    {
+      "tag": "HTTP",
+      "description": "http link"
+    },
+    {
+      "tag": "HACK",
+      "description": "tricky trick"
+    },
+    {
+      "tag": "OBSOLETE",
+      "description": "legacy code"
+    },
+    {
+      "tag": "REF",
+      "description": "refactoring required"
+    },
+    {
+      "tag": "TEST",
+      "description": "needs to be covered with tests"
+    }
+  ]
+}

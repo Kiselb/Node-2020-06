@@ -31,6 +31,7 @@ USAGE
 <!-- commands -->
 * [`semt hello [FILE]`](#semt-hello-file)
 * [`semt help [COMMAND]`](#semt-help-command)
+* [`semt init [FILE]`](#semt-init-file)
 
 ## `semt hello [FILE]`
 
@@ -68,4 +69,20 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src\commands\help.ts)_
+
+## `semt init [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ semt init [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src\commands\init.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\init.ts)_
 <!-- commandsstop -->
