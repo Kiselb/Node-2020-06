@@ -1,0 +1,14 @@
+Commands:
+	Init
+	List filter file
+	Add entity
+	Rm entity
+	Calc date duration
+
+Entity:
+	TODO[[<Date>],[<Duration>]]
+	<Date>::=PYYMMDD
+	<Duration>::= DHH.MM
+View:
+	Tree (TODO Only)
+	List
