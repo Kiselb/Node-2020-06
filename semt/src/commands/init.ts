@@ -23,6 +23,15 @@ export default class Init extends Command {
         { tag: 'O', description: 'legacy code' },
         { tag: 'R', description: 'refactoring required' },
         { tag: 'T', description: 'needs to be covered with tests' }
+      ],
+      ignore: [
+        { path: 'node_modules'},
+        { path: '.circleci'},
+        { path: 'bin'},
+      ],
+      sources: [
+        { ext: 'js'},
+        { ext: 'ts'},
       ]
     }
     access(`${process.cwd()}/semt.json`, error => {
@@ -55,9 +64,5 @@ export default class Init extends Command {
         }
       }
     )
-
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
-    }
   }
 }

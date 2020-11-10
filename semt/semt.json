@@ -24,5 +24,24 @@
       "tag": "T",
       "description": "needs to be covered with tests"
     }
+  ],
+  "ignore": [
+    {
+      "path": "node_modules"
+    },
+    {
+      "path": ".circleci"
+    },
+    {
+      "path": "bin"
+    }
+  ],
+  "sources": [
+    {
+      "ext": "js"
+    },
+    {
+      "ext": "ts"
+    }
   ]
 }

@@ -31,7 +31,10 @@ USAGE
 <!-- commands -->
 * [`semt hello [FILE]`](#semt-hello-file)
 * [`semt help [COMMAND]`](#semt-help-command)
-* [`semt init [FILE]`](#semt-init-file)
+* [`semt ignore [ACTION] [PATH]`](#semt-ignore-action-path)
+* [`semt init`](#semt-init)
+* [`semt list`](#semt-list)
+* [`semt source [FILE]`](#semt-source-file)
 
 ## `semt hello [FILE]`
 
@@ -70,13 +73,53 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src\commands\help.ts)_
 
-## `semt init [FILE]`
+## `semt ignore [ACTION] [PATH]`
+
+change ignore list
+
+```
+USAGE
+  $ semt ignore [ACTION] [PATH]
+```
+
+_See code: [src\commands\ignore.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\ignore.ts)_
+
+## `semt init`
+
+Init application
+
+```
+USAGE
+  $ semt init
+
+OPTIONS
+  -f, --force
+```
+
+_See code: [src\commands\init.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\init.ts)_
+
+## `semt list`
+
+Get a list of source code tag descriptions
+
+```
+USAGE
+  $ semt list
+
+OPTIONS
+  -f, --file=file  file name to save
+  -t, --tag=tag    filter by tag
+```
+
+_See code: [src\commands\list.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\list.ts)_
+
+## `semt source [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ semt init [FILE]
+  $ semt source [FILE]
 
 OPTIONS
   -f, --force
@@ -84,5 +127,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src\commands\init.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\init.ts)_
+_See code: [src\commands\source.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\source.ts)_
 <!-- commandsstop -->
