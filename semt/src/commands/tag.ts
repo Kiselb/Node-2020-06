@@ -11,15 +11,15 @@ enum Actions {
   LIST = "LIST"
 }
 
-export default class Source extends Command {
-  static description = 'change source extension files list'
+export default class Tag extends Command {
+  static description = 'change tags list'
 
   static flags = {}
 
-  static args = [{name: 'action'}, {name: 'extension'}]
+  static args = [{name: 'action'}, {name: 'tag'}, {name: 'desc'}]
 
   async run() {
-    const {args, flags} = this.parse(Source)
+    const {args, flags} = this.parse(Tag)
     const pwriteFile = promisify(writeFile)
     const preadFile = promisify(readFile)
 
@@ -28,40 +28,41 @@ export default class Source extends Command {
 
       switch((args.action || "").toUpperCase()) {
         case Actions.ADD: {
-          const extension: string = (args.extension || "").toLowerCase()
-          if (!extension) {
-            this.log(`${chalk.red('[ERROR]')} Source extension file not specified`)
+          const tag: string = (args.tag || "").toLowerCase()
+          const desc: string = (args.desc || "").toLowerCase()
+          if (!tag) {
+            this.log(`${chalk.red('[ERROR]')} Tag name not specified`)
             return
           }
-          if (config.sources.some(source => source.ext.toLowerCase() === extension)) {
-            this.log(`${chalk.blue('[EXISTS]')} Extension already exists in the sources list`)
+          if (!desc) {
+            this.log(`${chalk.red('[ERROR]')} Tag description not specified`)
+            return
+          }
+          if (config.tags.some(item => item.tag.toLowerCase() === tag)) {
+            this.log(`${chalk.blue('[EXISTS]')} Tag already exists in the tags list`)
             return
           } else {
-            config.sources.push({"ext": extension})
+            config.tags.push({"tag": tag, "description": desc})
             await pwriteFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
           }
           break
         }
         case Actions.REMOVE: {
-          const extension: string = (args.extension || "").toLowerCase()
-          if (!extension) {
-            this.log(`${chalk.red('[ERROR]')} Source extension file not specified`)
-            return
-          }
-          if (config.sources.some(source => source.ext.toLowerCase() === extension)) {
-            config.sources = config.sources.filter(source => source.ext.toLowerCase() !== extension)
+          const tag: string = (args.tag || "").toLowerCase()
+          if (config.tags.some(item => item.tag.toLowerCase() === tag)) {
+            config.tags = config.tags.filter(item => item.tag.toLowerCase() !== tag)
             await pwriteFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
           } else {
-            this.log(`${chalk.keyword('orange')('[WARNING]')} Extension not found in the sources list`)
+            this.log(`${chalk.keyword('orange')('[WARNING]')} Tag not found in the tags list`)
             return
           }
           break
         }
         case Actions.LIST: {
           const table = new Table({
-            head: ['Source'], colWidths: [25]
+            head: ['Tag', 'Description'], colWidths: [20, 100]
           });
-          table.push( ...config.sources.map(source => [`*.${source.ext}`]))
+          table.push( ...config.tags.map(item => [item.tag, item.description]))
           this.log(table.toString())
           return
         }

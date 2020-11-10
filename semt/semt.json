@@ -5,23 +5,23 @@
       "description": "needs to be implemented"
     },
     {
-      "tag": "HL",
+      "tag": "HTTP",
       "description": "http link"
     },
     {
-      "tag": "HA",
+      "tag": "HACK",
       "description": "hack or tricky trick"
     },
     {
-      "tag": "O",
+      "tag": "OBSOLETE",
       "description": "legacy code"
     },
     {
-      "tag": "R",
+      "tag": "REFACT",
       "description": "refactoring required"
     },
     {
-      "tag": "T",
+      "tag": "TEST",
       "description": "needs to be covered with tests"
     }
   ],

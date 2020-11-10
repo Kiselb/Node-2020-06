@@ -46,7 +46,7 @@ export default class Ignore extends Command {
                 }
               } else {
                 const table = new Table({
-                  head: ['Source'], colWidths: [25]
+                  head: ['Path'], colWidths: [100]
                 });
                 table.push( ...ignore.map(source => [source.path]))
                 this.log(table.toString())

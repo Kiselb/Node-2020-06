@@ -34,7 +34,8 @@ USAGE
 * [`semt ignore [ACTION] [PATH]`](#semt-ignore-action-path)
 * [`semt init`](#semt-init)
 * [`semt list`](#semt-list)
-* [`semt source [FILE]`](#semt-source-file)
+* [`semt source [ACTION] [EXTENSION]`](#semt-source-action-extension)
+* [`semt tag [FILE]`](#semt-tag-file)
 
 ## `semt hello [FILE]`
 
@@ -113,13 +114,24 @@ OPTIONS
 
 _See code: [src\commands\list.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\list.ts)_
 
-## `semt source [FILE]`
+## `semt source [ACTION] [EXTENSION]`
+
+change source extension files list
+
+```
+USAGE
+  $ semt source [ACTION] [EXTENSION]
+```
+
+_See code: [src\commands\source.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\source.ts)_
+
+## `semt tag [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ semt source [FILE]
+  $ semt tag [FILE]
 
 OPTIONS
   -f, --force
@@ -127,5 +139,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src\commands\source.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\source.ts)_
+_See code: [src\commands\tag.ts](https://github.com/Node-2020-06/semt/blob/v1.0.0/src\commands\tag.ts)_
 <!-- commandsstop -->

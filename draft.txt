@@ -1,8 +1,26 @@
 Commands:
-	Init
-	List tag file
-	Entity add
-	Entity rm
+	init
+		--force
+
+	list
+		--tag=<tag>
+		--file=<file>
+
+	tag
+		add <name> <description>
+	 	remove <name>
+		list
+
+	ignore
+		add <path>
+		remove <path>
+		list
+
+	source
+		add <extension>
+		remove <extension>
+		list
+
 	Calc date duration
 
 Entity:
