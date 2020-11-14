@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 import chalk from 'chalk'
 import Table from 'cli-table'
-import {promisify} from 'util'
+import {AFS} from '../classes/asyncfs'
 import {writeFile, readFile} from 'fs'
 import {IConfig} from '../classes/config'
 
@@ -11,6 +11,7 @@ enum Actions {
   LIST = "LIST"
 }
 
+//TODO: Перенести код изменения config в методы класса Config
 export default class Source extends Command {
   static description = 'change source extension files list'
 
@@ -20,11 +21,9 @@ export default class Source extends Command {
 
   async run() {
     const {args, flags} = this.parse(Source)
-    const pwriteFile = promisify(writeFile)
-    const preadFile = promisify(readFile)
 
     try {
-      const config: IConfig = JSON.parse((await preadFile(`${process.cwd()}/semt.json`)).toString())
+      const config: IConfig = JSON.parse((await AFS.readFile(`${process.cwd()}/semt.json`)).toString())
 
       switch((args.action || "").toUpperCase()) {
         case Actions.ADD: {
@@ -38,7 +37,7 @@ export default class Source extends Command {
             return
           } else {
             config.sources.push({"ext": extension})
-            await pwriteFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
+            await AFS.writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
           }
           break
         }
@@ -50,7 +49,7 @@ export default class Source extends Command {
           }
           if (config.sources.some(source => source.ext.toLowerCase() === extension)) {
             config.sources = config.sources.filter(source => source.ext.toLowerCase() !== extension)
-            await pwriteFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
+            await AFS.writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
           } else {
             this.log(`${chalk.keyword('orange')('[WARNING]')} Extension not found in the sources list`)
             return

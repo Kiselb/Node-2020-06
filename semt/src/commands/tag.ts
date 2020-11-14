@@ -1,8 +1,8 @@
 import {Command, flags} from '@oclif/command'
 import chalk from 'chalk'
+//TODO: Resolve warning
 import Table from 'cli-table'
-import {promisify} from 'util'
-import {writeFile, readFile} from 'fs'
+import { AFS } from '../classes/asyncfs'
 import {IConfig} from '../classes/config'
 
 enum Actions {
@@ -10,7 +10,7 @@ enum Actions {
   REMOVE = "REMOVE",
   LIST = "LIST"
 }
-
+//TODO: Перенести код изменения config в методы класса Config
 export default class Tag extends Command {
   static description = 'change tags list'
 
@@ -20,11 +20,9 @@ export default class Tag extends Command {
 
   async run() {
     const {args, flags} = this.parse(Tag)
-    const pwriteFile = promisify(writeFile)
-    const preadFile = promisify(readFile)
 
     try {
-      const config: IConfig = JSON.parse((await preadFile(`${process.cwd()}/semt.json`)).toString())
+      const config: IConfig = JSON.parse((await AFS.readFile(`${process.cwd()}/semt.json`)).toString())
 
       switch((args.action || "").toUpperCase()) {
         case Actions.ADD: {
@@ -43,7 +41,7 @@ export default class Tag extends Command {
             return
           } else {
             config.tags.push({"tag": tag, "description": desc})
-            await pwriteFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
+            await AFS.writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
           }
           break
         }
@@ -51,7 +49,7 @@ export default class Tag extends Command {
           const tag: string = (args.tag || "").toLowerCase()
           if (config.tags.some(item => item.tag.toLowerCase() === tag)) {
             config.tags = config.tags.filter(item => item.tag.toLowerCase() !== tag)
-            await pwriteFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
+            await AFS.writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "))
           } else {
             this.log(`${chalk.keyword('orange')('[WARNING]')} Tag not found in the tags list`)
             return

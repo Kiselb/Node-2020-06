@@ -6,6 +6,7 @@ import chalk from 'chalk'
 // HL https://www.npmjs.com/package/@types/inquirer
 import inquirer from 'inquirer'
 
+//TODO: использовать промифицированные версии функций fs
 export default class Init extends Command {
   static description = 'Init application'
 
@@ -15,6 +16,7 @@ export default class Init extends Command {
 
   async run() {
     const {args, flags} = this.parse(Init)
+    //TODO: Вынести в отдельный файл 
     const config = {
       tags: [
         { tag: 'TODO', description: 'needs to be implemented' },
@@ -34,9 +36,11 @@ export default class Init extends Command {
         { ext: 'ts'},
       ]
     }
+    //TODO: Переделать на использование await 
     access(`${process.cwd()}/semt.json`, error => {
         if (error) {
-          writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, '  '), error => {
+            //TODO: Переделать на использование await 
+            writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, '  '), error => {
             if (error) {
               this.log(`${chalk.red('[ERROR]')} Initialization error: ${error.message}`)
             } else {
@@ -47,7 +51,8 @@ export default class Init extends Command {
           if (flags.force) {
             inquirer.prompt({ type: 'confirm', name: 'reinit', message: 'Reinitialize application?'}).then(answer => {
               if (answer.reinit) {
-                writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, '  '), error => {
+                  //TODO: Переделать на использование await 
+                  writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, '  '), error => {
                   if (error) {
                     this.log(`${chalk.red('[ERROR]')} Initialization error: ${error.message}`)
                   } else {

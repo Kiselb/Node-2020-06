@@ -1,3 +1,4 @@
+// REFACT: Promisified vesion must be used
 import { appendFile } from 'fs'
 
 export interface IWriter {
@@ -43,6 +44,7 @@ class FileWriter implements IWriter {
     }
     public open() {}
     public write(data: string) {
+        // TODO: Replace with async/await
         appendFile(this.fileName, data, 'utf8', (error) => {
             if (error) throw new Error(`Write file error: ${error.message}`)
         })
