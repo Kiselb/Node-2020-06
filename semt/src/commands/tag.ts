@@ -1,6 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import chalk from 'chalk'
-//TODO: Resolve warning
+//TODO[19-11-2020;1h]: Разобраться с уведомлением IDE: Could not find a declaration file for module 'cli-table'
 import Table from 'cli-table'
 import { AFS } from '../classes/asyncfs'
 import {IConfig} from '../classes/config'
@@ -10,7 +10,7 @@ enum Actions {
   REMOVE = "REMOVE",
   LIST = "LIST"
 }
-//TODO: Перенести код изменения config в методы класса Config
+//TODO[19-11-2020;15m]: Перенести код изменения config в методы класса Config
 export default class Tag extends Command {
   static description = 'change tags list'
 

@@ -1,5 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import chalk from 'chalk'
+//TODO[19-11-2020;1h]: Разобраться с уведомлением IDE: Could not find a declaration file for module 'cli-table'
 import Table from 'cli-table'
 import {AFS} from '../classes/asyncfs'
 import {writeFile, readFile} from 'fs'
@@ -11,7 +12,7 @@ enum Actions {
   LIST = "LIST"
 }
 
-//TODO: Перенести код изменения config в методы класса Config
+//TODO[19-11-2020;15m]: Перенести код изменения config в методы класса Config
 export default class Source extends Command {
   static description = 'change source extension files list'
 

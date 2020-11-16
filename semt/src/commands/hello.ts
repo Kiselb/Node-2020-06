@@ -1,6 +1,6 @@
 import {Command, flags} from '@oclif/command'
 
-//TODO: Удалить класс
+//TODO[19-11-2020;5m]: Удалить класс
 export default class Hello extends Command {
   static description = 'describe the command here'
 

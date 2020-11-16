@@ -1,5 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import chalk from 'chalk'
+//TODO[19-11-2020;1h]: Разобраться с уведомлением IDE: Could not find a declaration file for module 'cli-table'
 import Table from 'cli-table'
 import {access, writeFile, readFile} from 'fs'
 
@@ -10,7 +11,7 @@ export default class Ignore extends Command {
 
   static args = [{name: 'action'}, {name: 'path'}]
 
-  //TODO: использовать промифицированные версии функций fs
+  //TODO[19-11-2020;5m]: Использовать промифицированные версии функций fs
   async run() {
     const {args, flags} = this.parse(Ignore)
     const action: string = (args.action || "").toLowerCase()
@@ -19,12 +20,12 @@ export default class Ignore extends Command {
     if (!((action === "add" && args.path) || (action === "remove" && args.path) || (action === "list"))) {
       this.log(`${chalk.red('[ERROR]')} Action or path not specified`)
     } else {
-      //TODO: Переделать на использование await
+      //TODO[19-11-2020;5m]: Переделать на использование await
       access(`${process.cwd()}/semt.json`, error => {
         if (error) {
           this.log(`${chalk.red('[ERROR]')} Config file does not exists`)
         } else {
-          //TODO: Переделать на использование await
+          //TODO[19-11-2020;5m]: Переделать на использование await
           readFile(`${process.cwd()}/semt.json`, (error, data) => {
             if (error) {
               this.log(`${chalk.red('[ERROR]')} Config file read error: ${error.message}`)
@@ -55,7 +56,7 @@ export default class Ignore extends Command {
                 this.log(table.toString())
               }
               if (changed) {
-                //TODO: Переделать на использование await
+                //TODO[19-11-2020;5m]: Переделать на использование await
                 writeFile(`${process.cwd()}/semt.json`, JSON.stringify(config, null, "  "), (error) => {
                   if (error) {
                     this.log(`${chalk.red('[ERROR]')} Config file write error: ${error.message}`)

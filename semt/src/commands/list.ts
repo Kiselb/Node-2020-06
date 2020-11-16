@@ -5,6 +5,20 @@ import {Config} from '../classes/config'
 import {AFS} from '../classes/asyncfs'
 import {WriterTypes, IWriter, WriterFactory} from '../classes/writer'
 
+export interface ITagToDo {
+  dueDate?: string;
+  estimate?: number;
+}
+
+export interface ITag {
+  tag: string;
+  line: string;
+  source: string;
+  fileName: string;
+  index: number;
+  todo?: ITagToDo;
+}
+
 export default class List extends Command {
   static description = 'Get a list of source code tag descriptions'
 
@@ -27,9 +41,51 @@ export default class List extends Command {
       if (path.extname(fileName) == "." + sources[i].ext) {
         return true
       }
-      console.log(path.extname(fileName))
     }
     return false
+  }
+
+  static async parseSource(fileName: string, tags: any[]): Promise<ITag[]> {
+    const source = await AFS.readFile(fileName, 'utf8')
+    const lines: string[] = source.split('\n')
+    const report: ITag[] = []
+
+    for(let i = 0; i < lines.length; i++) {
+      lines[i] = lines[i].trim().replace(/\r/g, '')
+    }
+
+    for(let i = 0; i < lines.length; i++) {
+      const test = lines[i].replace(/ /g, '').replace(/\t/g, '').replace(/\r/g, '')
+      for(let j = 0; j < tags.length; j++) {
+        if (test.toLowerCase().indexOf("//" + tags[j].tag.toLowerCase()) >= 0) {
+          const source = ((lines[i + 1] || "").indexOf("//") < 0)? ((lines[i + 1] || "")): ("-")
+          let todo: ITagToDo | undefined = undefined
+          if (tags[j].tag.toLowerCase() == "todo") {
+            const attributes: string[] = test.substring(test.indexOf("[") + 1, test.indexOf("]")).trim().replace(/ /g, '').split(";")
+            if (attributes[0]) {
+              for(let k = 0; k < attributes.length; k++) {
+                if (attributes[k][attributes[k].length - 1].toLowerCase() == "m") {
+                  todo = todo || {}
+                  todo.estimate = (+attributes[k].substring(0, attributes[k].length - 1)) || 0
+                } else if (attributes[k][attributes[k].length - 1].toLowerCase() == "h") {
+                  todo = todo || {}
+                  todo.estimate = ((+attributes[k].substring(0, attributes[k].length - 1)) || 0) * 60
+                } else {
+                  todo = todo || {}
+                  todo.dueDate = new Date(attributes[k].substring(3, 5) + '-' + attributes[k].substring(0, 2) + '-' + attributes[k].substring(6)).toString()
+                }
+              }
+              console.log(todo)
+            }
+            console.log(attributes)
+          }
+          const value: ITag = { tag: tags[j].tag, line: lines[i], source: source, index: i + 1, fileName: fileName, todo: todo };
+          report.push(value)
+          break
+        }
+      }
+    }
+    return report
   }
 
   static async getFiles(parent: any, stat: any, ignore: any[], sources: any[], childPath?: string) {
@@ -75,12 +131,38 @@ export default class List extends Command {
       const stat = { dirs: 0, files: 0, sources: [] }
       await List.getFiles(root, stat, ignore, sources)
 
-      console.log(stat)
+      let report: ITag[] = []
+      for(let i = 0; i < stat.sources.length; i++) {
+        report = [ ...report, ... await List.parseSource(stat.sources[i], tags)]
+      }
+
+      this.log(`Directories: ${stat.dirs} Files: ${stat.files}\n`)
 
       writer.open()
-      writer.write("Test")
-      writer.close()
 
+      const totals: ITagToDo = {}
+      for(let i = 0; i < tags.length; i++) {
+        if (!flags.tag || !!flags.tag && tags[i].tag.toLowerCase() == flags.tag.toLowerCase()) {
+          writer.write(`# ${tags[i].tag} \n`)
+          for(let j = 0; j < report.length; j++) {
+            if (tags[i].tag == report[j].tag) {
+              writer.write(`**${report[j].line}**`)
+              writer.write(`${report[j].index} ${report[j].fileName}`)
+              writer.write(`${report[j].source}`)
+              writer.write(` `)
+            }
+            if (tags[i].tag.toLowerCase() == "todo" && report[j].todo && report[j].todo?.estimate) {
+              totals.estimate = (totals.estimate || 0) + (report[j].todo?.estimate || 0)
+            }
+            if (tags[i].tag.toLowerCase() == "todo" && report[j].todo && report[j].todo?.dueDate) {
+              totals.dueDate = (new Date(totals.dueDate || (report[j].todo?.dueDate || new Date().toISOString())) > new Date(report[j].todo?.dueDate || new Date()))? ((totals.dueDate || report[j].todo?.dueDate)): (report[j].todo?.dueDate)
+            }
+          }
+        }
+      }
+      writer.write(`Оценка времени: ${(totals.estimate || 0) / 60} часов`)
+      writer.write(`Оценка даты: ${new Date((totals.dueDate || new Date().toISOString()))}`)
+      writer.close()
     } catch(error) {
       this.log(`${chalk.red('[ERROR]')} ${error.message}`)
     }

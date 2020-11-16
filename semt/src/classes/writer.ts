@@ -1,5 +1,4 @@
-// REFACT: Promisified vesion must be used
-import { appendFile } from 'fs'
+import { appendFileSync, writeFileSync } from 'fs'
 
 export interface IWriter {
     open(): void; 
@@ -40,15 +39,22 @@ class ConsoleWriter implements IWriter {
 
 }
 class FileWriter implements IWriter {
+
     constructor(private parent: any, private fileName: string) {
     }
-    public open() {}
+    public open() {
+        try {
+            writeFileSync(this.fileName, "", 'utf8')
+        } catch(error) {
+            throw new Error(`Write file error: ${error.message}`);            
+        }
+    }
     public write(data: string) {
-        // TODO: Replace with async/await
-        appendFile(this.fileName, data, 'utf8', (error) => {
-            if (error) throw new Error(`Write file error: ${error.message}`)
-        })
+        try {
+            appendFileSync(this.fileName, data + '\n', 'utf8')
+        } catch(error) {
+            throw new Error(`Write file error: ${error.message}`);
+        }
     }
     public close() {}
-
 }
