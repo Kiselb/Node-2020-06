@@ -60,5 +60,7 @@ import Table from 'cli-table'
 13 D:\EDUCATION\node-2020-06-project\Node-2020-06\semt\src\commands\tag.ts
 export default class Tag extends Command {
  
+# Оценка TODO
+
 Оценка времени: 4.25 часов
-Оценка даты: Thu Nov 19 2020 00:00:00 GMT+0300 (GMT+03:00)
+Оценка даты: 2020-11-19

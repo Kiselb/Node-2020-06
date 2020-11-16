@@ -160,8 +160,9 @@ export default class List extends Command {
           }
         }
       }
+      writer.write(`# Оценка TODO\n`)
       writer.write(`Оценка времени: ${(totals.estimate || 0) / 60} часов`)
-      writer.write(`Оценка даты: ${new Date((totals.dueDate || new Date().toISOString()))}`)
+      writer.write(`Оценка даты: ${new Date((totals.dueDate || new Date().toISOString())).toLocaleDateString()}`)
       writer.close()
     } catch(error) {
       this.log(`${chalk.red('[ERROR]')} ${error.message}`)
