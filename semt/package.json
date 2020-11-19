@@ -1,7 +1,7 @@
 {
   "name": "semt",
   "description": "Code semantic tags management CLI application",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "author": "Mikhail V. Kiselev",
   "bin": {
     "semt": "./bin/run"
