@@ -1,12 +1,12 @@
 {
   "name": "semt",
   "description": "Code semantic tags management CLI application",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "author": "Mikhail V. Kiselev",
   "bin": {
     "semt": "./bin/run"
   },
-  "bugs": "https://github.com/Node-2020-06/semt/issues",
+  "bugs": "https://github.com/Kiselb/Node-2020-06/semt/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",

@@ -11,7 +11,7 @@ export default class Init extends Command {
   static description = 'Init application'
 
   static flags = {
-    force: flags.boolean({char: 'f'}),
+    force: flags.boolean({char: 'f', description: 'initialize the app anyway'}),
   }
 
   async run() {

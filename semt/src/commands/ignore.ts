@@ -9,7 +9,18 @@ export default class Ignore extends Command {
 
   static flags = {}
 
-  static args = [{name: 'action'}, {name: 'path'}]
+  static args = [
+    {
+      name: 'action',
+      required: true,
+      description: 'command against source list',
+      options: ['ADD', 'REMOVE', 'LIST']
+    },
+    {
+      name: 'path',
+      description: 'added or removed ignored folder'
+    }
+  ]
 
   //TODO[19-11-2020;5m]: Использовать промифицированные версии функций fs
   async run() {

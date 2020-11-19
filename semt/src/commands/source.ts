@@ -14,11 +14,22 @@ enum Actions {
 
 //TODO[19-11-2020;15m]: Перенести код изменения config в методы класса Config
 export default class Source extends Command {
-  static description = 'change source extension files list'
+  static description = 'Change source extension files list'
 
   static flags = {}
 
-  static args = [{name: 'action'}, {name: 'extension'}]
+  static args = [
+    {
+      name: 'action',
+      required: true,
+      description: 'command against source list',
+      options: ['ADD', 'REMOVE', 'LIST']
+    },
+    {
+      name: 'extension',
+      description: 'source file extension'
+    }
+  ]
 
   async run() {
     const {args, flags} = this.parse(Source)

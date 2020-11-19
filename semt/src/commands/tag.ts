@@ -16,7 +16,22 @@ export default class Tag extends Command {
 
   static flags = {}
 
-  static args = [{name: 'action'}, {name: 'tag'}, {name: 'desc'}]
+  static args = [
+    {
+      name: 'action',
+      required: true,
+      description: 'command against source list',
+      options: ['ADD', 'REMOVE', 'LIST']
+    },
+    {
+      name: 'tag',
+      description: 'added or removed tag from the list'
+    },
+    {
+      name: 'desc',
+      description: 'description of the added tag'
+    }
+  ]
 
   async run() {
     const {args, flags} = this.parse(Tag)
