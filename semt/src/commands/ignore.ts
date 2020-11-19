@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 import chalk from 'chalk'
 //TODO[19-11-2020;1h]: Разобраться с уведомлением IDE: Could not find a declaration file for module 'cli-table'
-import Table from 'cli-table'
+const Table  = require('cli-table')
 import {access, writeFile, readFile} from 'fs'
 
 export default class Ignore extends Command {

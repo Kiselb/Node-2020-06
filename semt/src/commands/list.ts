@@ -75,9 +75,9 @@ export default class List extends Command {
                   todo.dueDate = new Date(attributes[k].substring(3, 5) + '-' + attributes[k].substring(0, 2) + '-' + attributes[k].substring(6)).toString()
                 }
               }
-              console.log(todo)
+              //console.log(todo)
             }
-            console.log(attributes)
+            //console.log(attributes)
           }
           const value: ITag = { tag: tags[j].tag, line: lines[i], source: source, index: i + 1, fileName: fileName, todo: todo };
           report.push(value)
@@ -160,9 +160,9 @@ export default class List extends Command {
           }
         }
       }
-      writer.write(`# Оценка TODO\n`)
-      writer.write(`Оценка времени: ${(totals.estimate || 0) / 60} часов`)
-      writer.write(`Оценка даты: ${new Date((totals.dueDate || new Date().toISOString())).toLocaleDateString()}`)
+      writer.write(`# Totals TODO\n`)
+      writer.write(`Time required : ${(totals.estimate || 0) / 60} hours`)
+      writer.write(`Due date: ${new Date((totals.dueDate || new Date().toISOString())).toLocaleDateString()}`)
       writer.close()
     } catch(error) {
       this.log(`${chalk.red('[ERROR]')} ${error.message}`)

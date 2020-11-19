@@ -1,7 +1,7 @@
 {
   "name": "semt",
   "description": "Code semantic tags management CLI application",
-  "version": "1.0.0",
+  "version": "0.0.7",
   "author": "Mikhail V. Kiselev",
   "bin": {
     "semt": "./bin/run"
@@ -37,7 +37,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/Node-2020-06/semt",
+  "homepage": "https://github.com/Kiselb/Node-2020-06/tree/main/semt",
   "keywords": [
     "oclif"
   ],
