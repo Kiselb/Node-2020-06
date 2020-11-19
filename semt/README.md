@@ -22,7 +22,7 @@ $ npm install -g semt
 $ semt COMMAND
 running command...
 $ semt (-v|--version|version)
-semt/0.0.10 win32-x64 node-v12.16.1
+semt/0.0.11 win32-x64 node-v12.16.1
 $ semt --help [COMMAND]
 USAGE
   $ semt COMMAND
@@ -68,7 +68,7 @@ ARGUMENTS
   PATH    added or removed ignored folder
 ```
 
-_See code: [src\commands\ignore.ts](https://github.com/Node-2020-06/semt/blob/v0.0.10/src\commands\ignore.ts)_
+_See code: [src\commands\ignore.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\ignore.ts)_
 
 ## `semt init`
 
@@ -82,7 +82,7 @@ OPTIONS
   -f, --force  initialize the app anyway
 ```
 
-_See code: [src\commands\init.ts](https://github.com/Node-2020-06/semt/blob/v0.0.10/src\commands\init.ts)_
+_See code: [src\commands\init.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\init.ts)_
 
 ## `semt list`
 
@@ -97,7 +97,7 @@ OPTIONS
   -t, --tag=tag    filter by tag
 ```
 
-_See code: [src\commands\list.ts](https://github.com/Node-2020-06/semt/blob/v0.0.10/src\commands\list.ts)_
+_See code: [src\commands\list.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\list.ts)_
 
 ## `semt source ACTION [EXTENSION]`
 
@@ -112,7 +112,7 @@ ARGUMENTS
   EXTENSION  source file extension
 ```
 
-_See code: [src\commands\source.ts](https://github.com/Node-2020-06/semt/blob/v0.0.10/src\commands\source.ts)_
+_See code: [src\commands\source.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\source.ts)_
 
 ## `semt tag ACTION [TAG] [DESC]`
 
@@ -128,5 +128,5 @@ ARGUMENTS
   DESC    description of the added tag
 ```
 
-_See code: [src\commands\tag.ts](https://github.com/Node-2020-06/semt/blob/v0.0.10/src\commands\tag.ts)_
+_See code: [src\commands\tag.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\tag.ts)_
 <!-- commandsstop -->
