@@ -3,7 +3,9 @@ semt
 
 Code semantic tags management CLI application
 
-
+Search and analysis of semantic labels in the source code of the developed application. For example, TODO tags, links to sources - HTTP tags, etc.
+Estimation of times and dates of execution of tasks marked with TODO tags. TODO tag attributes: expected implementation time and / or due date. For instance,
+TODO [19-11-2020; 15m] - the code must be developed before 19-11-2020 and it is planned to spend 15 minutes
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/semt.svg)](https://npmjs.org/package/semt)
@@ -22,7 +24,7 @@ $ npm install -g semt
 $ semt COMMAND
 running command...
 $ semt (-v|--version|version)
-semt/0.0.11 win32-x64 node-v12.16.1
+semt/0.0.14 win32-x64 node-v12.16.1
 $ semt --help [COMMAND]
 USAGE
   $ semt COMMAND
@@ -68,7 +70,7 @@ ARGUMENTS
   PATH    added or removed ignored folder
 ```
 
-_See code: [src\commands\ignore.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\ignore.ts)_
+_See code: [src\commands\ignore.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.14/src\commands\ignore.ts)_
 
 ## `semt init`
 
@@ -82,7 +84,7 @@ OPTIONS
   -f, --force  initialize the app anyway
 ```
 
-_See code: [src\commands\init.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\init.ts)_
+_See code: [src\commands\init.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.14/src\commands\init.ts)_
 
 ## `semt list`
 
@@ -97,7 +99,7 @@ OPTIONS
   -t, --tag=tag    filter by tag
 ```
 
-_See code: [src\commands\list.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\list.ts)_
+_See code: [src\commands\list.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.14/src\commands\list.ts)_
 
 ## `semt source ACTION [EXTENSION]`
 
@@ -112,7 +114,7 @@ ARGUMENTS
   EXTENSION  source file extension
 ```
 
-_See code: [src\commands\source.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\source.ts)_
+_See code: [src\commands\source.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.14/src\commands\source.ts)_
 
 ## `semt tag ACTION [TAG] [DESC]`
 
@@ -128,5 +130,5 @@ ARGUMENTS
   DESC    description of the added tag
 ```
 
-_See code: [src\commands\tag.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.11/src\commands\tag.ts)_
+_See code: [src\commands\tag.ts](https://github.com/Kiselb/Node-2020-06/tree/main/semt/blob/v0.0.14/src\commands\tag.ts)_
 <!-- commandsstop -->

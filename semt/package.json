@@ -1,7 +1,7 @@
 {
   "name": "semt",
-  "description": "Code semantic tags management CLI application. Search and analysis of semantic tags in the source code. For example, TODO tags. Estimation of times and dates of execution of tasks marked with TODO tags. TODO tag attributes: expected implementation time and / or due date. For instance, TODO [19-11-2020; 15m] - the code must be developed before 19-11-2020 and it is planned to spend 15 minutes",
-  "version": "0.0.11",
+  "description": "Code semantic tags management CLI application",
+  "version": "0.0.14",
   "author": "Mikhail V. Kiselev",
   "bin": {
     "semt": "./bin/run"
